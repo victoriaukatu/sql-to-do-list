@@ -16,6 +16,20 @@ router.get('/', (req, res) => {
 });
 
 router.post('/', (req, res) => {
+    let queryText = `INSERT INTO "tasks" ("task", "status") VALUES ()`
+    pool.query(queryText)
+    .then()
+    .catch(error => {
+        console.log('There is an error in POST!', error);
+        res.sendStatus(500);
+    })
+})
+
+router.delete('/', (req, res) => {
+
+})
+
+router.put('/', (req, res) => {
     
 })
 
