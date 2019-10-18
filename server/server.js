@@ -8,7 +8,8 @@ const tasksRouter = require('./routes/task.router.js');
 app.use('/tasks', tasksRouter);
 
 // send back static files
-app.use(express.static('server/public'))
+app.use(express.static('server/public'));
+
 
 
 // listen on specified port
