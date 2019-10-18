@@ -25,12 +25,22 @@ router.post('/', (req, res) => {
     })
 })
 
-router.delete('/', (req, res) => {
-
+router.delete('/:id', (req, res) => {
+    let id = req.params.id;
+    let queryText = `DELETE from "tasks" where "id"=$1;`
+    pool.query(queryText, [req.params.id])
+    .then(() => {
+        console.log('Delete has been clicked for id', id);
+        res.sendStatus(200);
+    })
+    .catch(error => {
+        console.log('Error with delete attempt!', error);
+        res.sendStatus(500);
+    })
 })
 
 router.put('/', (req, res) => {
-    
+
 })
 
 module.exports = router
