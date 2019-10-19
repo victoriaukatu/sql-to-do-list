@@ -11,7 +11,6 @@ app.use('/tasks', tasksRouter);
 app.use(express.static('server/public'));
 
 
-
 // listen on specified port
 app.listen(PORT, () => {
     console.log('listening on port', PORT);
