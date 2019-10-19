@@ -3,6 +3,7 @@ console.log('in client.js');
 $(document).ready(function () {
     console.log('Ready to go!');
     $('#addTaskButton').on('click', handleTaskSubmit);
+    refreshTaskList();
 });
 
 
@@ -11,6 +12,7 @@ function handleTaskSubmit() {
     let collectTask = {};
     collectTask.task = $('#taskInput').val();
     addTask(collectTask);
+    $('#taskInput').val('');
 }
 
 function addTask(newTask) {
