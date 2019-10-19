@@ -18,16 +18,16 @@ router.get('/', (req, res) => {
 router.post('/', (req, res) => {
     let newTask = req.body;
     console.log('Adding this task:', newTask);
-    // let queryText = `INSERT INTO "tasks" ("task", "status") VALUES ($1, $2);`;
-    // pool.query(queryText, [newTask.task, newTask.status])
-    // .then(() => {
-    //     console.log('Successful post!');
-    //     res.sendStatus(200);
-    // })
-    // .catch(error => {
-    //     console.log('There is an error in POST!', error);
-    //     res.sendStatus(500);
-    // })
+    let queryText = `INSERT INTO "tasks" ("task") VALUES ($1);`;
+    pool.query(queryText, [newTask.task])
+    .then(() => {
+        console.log('Successful post!');
+        res.sendStatus(200);
+    })
+    .catch(error => {
+        console.log('There is an error in POST!', error);
+        res.sendStatus(500);
+    })
 })
 
 router.delete('/:id', (req, res) => {
