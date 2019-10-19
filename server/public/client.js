@@ -43,3 +43,12 @@ function refreshTaskList() {
             console.log('Error receiving updated task list', error);
         });
 }
+
+function appendTaskList(toDos) {
+    $('#taskList').empty();
+    for (i=0; i<toDos.length; i++) {
+        let tasks = toDos[i];
+        $('#taskList').append(`
+        <li>${tasks.task} ${tasks.status}</li>`);
+    }
+}
