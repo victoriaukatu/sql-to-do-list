@@ -49,6 +49,6 @@ function appendTaskList(toDos) {
     for (i=0; i<toDos.length; i++) {
         let tasks = toDos[i];
         $('#taskList').append(`
-        <li>${tasks.task} ${tasks.status}</li>`);
+        <tr><td>${tasks.task}</td><td>${tasks.status}</td></tr>`);
     }
 }
