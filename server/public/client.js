@@ -3,6 +3,8 @@ console.log('in client.js');
 $(document).ready(function () {
     console.log('Ready to go!');
     $('#addTaskButton').on('click', handleTaskSubmit);
+    $('#taskList').on('click', '.deleteButton', handleTaskDelete);
+    $('#taskList').on('click', '.completeButton', updateTask);
     refreshTaskList();
 });
 
@@ -48,9 +50,46 @@ function refreshTaskList() {
 
 function appendTaskList(toDos) {
     $('#taskList').empty();
-    for (i=0; i<toDos.length; i++) {
+    for (i = 0; i < toDos.length; i++) {
         let tasks = toDos[i];
         $('#taskList').append(`
-        <tr><td>${tasks.task}</td><td>${tasks.status}</td></tr>`);
+        <tr><td>${tasks.task}</td>
+        <td>${tasks.status}</td>
+        <td><button data-id="${tasks.id}" class="completeButton">Complete</button></td>
+        <td><button data-id="${tasks.id}" class="deleteButton">Delete</button></td>
+        </tr>`);
     }
+}
+
+function handleTaskDelete() {
+    console.log($(this).data('id'));
+    let taskID = $(this).data('id');
+    $.ajax({
+        method: 'DELETE',
+        url: `/tasks/${taskID}`
+    })
+        .then(function () {
+            console.log('Task has been deleted');
+            refreshTaskList();
+        })
+        .catch((error) => {
+            console.log('Error in DELETE', error);
+            alert('Delete was not successful. Please try again.');
+        })
+}
+
+function updateTask() {
+    console.log($(this).data('id'));
+    let taskID = $(this).data('id');
+    $.ajax({
+        method: 'PUT',
+        url: `/tasks/${taskID}`
+    })
+        .then(function () {
+            refreshTaskList();
+        })
+        .catch((error) => {
+            console.log('Error in updating task', error);
+            alert('The task was not successfully updated. Please try again.');
+        });
 }
