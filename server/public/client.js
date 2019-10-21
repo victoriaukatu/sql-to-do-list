@@ -57,6 +57,7 @@ function appendTaskList(toDos) {
     $('#taskList').empty();
     for (i = 0; i < toDos.length; i++) {
         let tasks = toDos[i];
+        let color;
         if(tasks.status == true){
            color = `<tr data-id="${tasks.id}" class="green">`;
         }
