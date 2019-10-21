@@ -1,5 +1,6 @@
 console.log('in client.js');
 
+// runs on page load and handles event listeners
 $(document).ready(function () {
     console.log('Ready to go!');
     $('#addTaskButton').on('click', handleTaskSubmit);
@@ -8,7 +9,7 @@ $(document).ready(function () {
     refreshTaskList();
 });
 
-
+// When 'Add Task' button is clicked this function collects inputs from user and runs POST function
 function handleTaskSubmit() {
     console.log('Add task button has been clicked!');
     let collectTask = {};
@@ -18,6 +19,7 @@ function handleTaskSubmit() {
     $('#taskInput').val('');
 }
 
+// Send user inputs to the database
 function addTask(newTask) {
     $.ajax({
         method: 'POST',
@@ -35,6 +37,7 @@ function addTask(newTask) {
         });
 }
 
+// Get updated table information and refresh the browser page 
 function refreshTaskList() {
     $.ajax({
         method: 'GET',
@@ -49,6 +52,7 @@ function refreshTaskList() {
         });
 }
 
+// Append the table information to the DOM
 function appendTaskList(toDos) {
     $('#taskList').empty();
     for (i = 0; i < toDos.length; i++) {
@@ -70,6 +74,7 @@ function appendTaskList(toDos) {
     }
 }
 
+// Remove task when 'Delete' button is clicked
 function handleTaskDelete() {
     console.log($(this).data('id'));
     let taskID = $(this).data('id');
@@ -87,6 +92,7 @@ function handleTaskDelete() {
         })
 }
 
+// Change the status of a task when 'Complete' button is clicked
 function updateTask() {
     console.log($(this).data('id'));
     let taskID = $(this).data('id');

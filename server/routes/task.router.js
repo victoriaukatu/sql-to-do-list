@@ -3,6 +3,7 @@ const router = express.Router();
 
 const pool = require('../modules/pool');
 
+// This receives the updated table of tasks from the database
 router.get('/', (req, res) => {
     let queryText = `SELECT * FROM "tasks"`;
     pool.query(queryText)
@@ -15,6 +16,7 @@ router.get('/', (req, res) => {
         })
 });
 
+// This will add new tasks to the database
 router.post('/', (req, res) => {
     let newTask = req.body;
     console.log('Adding this task:', newTask);
@@ -30,6 +32,7 @@ router.post('/', (req, res) => {
         })
 })
 
+// This will permanently delete tasks from the database
 router.delete('/:id', (req, res) => {
     let id = req.params.id;
     let queryText = `DELETE from "tasks" where "id"=$1;`
@@ -44,6 +47,7 @@ router.delete('/:id', (req, res) => {
         })
 })
 
+// This allows for status of tasks to be changed
 router.put('/:id', (req, res) => {
     let task = req.body;
     let id = req.params.id;
