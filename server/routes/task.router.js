@@ -18,8 +18,8 @@ router.get('/', (req, res) => {
 router.post('/', (req, res) => {
     let newTask = req.body;
     console.log('Adding this task:', newTask);
-    let queryText = `INSERT INTO "tasks" ("task") VALUES ($1);`;
-    pool.query(queryText, [newTask.task])
+    let queryText = `INSERT INTO "tasks" ("task", "status") VALUES ($1, $2);`;
+    pool.query(queryText, [newTask.task, newTask.status])
         .then(() => {
             console.log('Successful post!');
             res.sendStatus(200);
@@ -44,9 +44,20 @@ router.delete('/:id', (req, res) => {
         })
 })
 
-router.put('/', (req, res) => {
-    let queryText = `UPDATE "tasks" SET "status" = Done!
-                    WHERE `
+router.put('/:id', (req, res) => {
+    let task = req.body;
+    let id = req.params.id;
+    let status = req.params.status;
+    let queryText = `UPDATE "tasks" SET "status" = 'true'
+                    WHERE "id"=$1;`;
+    pool.query(queryText, [id])
+    .then(function() {
+        res.sendStatus(200);
+    })
+    .catch(error => {
+        console.log('Error with update attempt!', error);
+        res.sendStatus(500);
+    });
 
 })
 

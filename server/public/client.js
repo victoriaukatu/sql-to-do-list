@@ -13,6 +13,7 @@ function handleTaskSubmit() {
     console.log('Add task button has been clicked!');
     let collectTask = {};
     collectTask.task = $('#taskInput').val();
+    collectTask.status = $('#statusInput').val();
     addTask(collectTask);
     $('#taskInput').val('');
 }
@@ -52,8 +53,16 @@ function appendTaskList(toDos) {
     $('#taskList').empty();
     for (i = 0; i < toDos.length; i++) {
         let tasks = toDos[i];
+        // let color = "";
+        if(tasks.status == true){
+           color = `<tr data-id="${tasks.id}" class="green">`;
+        }
+        else if(tasks.status == false) {
+            color = `<tr data-id="${tasks.id}">`
+        }
         $('#taskList').append(`
-        <tr><td>${tasks.task}</td>
+        <tr id="${color}">
+        <td>${tasks.task}</td>
         <td>${tasks.status}</td>
         <td><button data-id="${tasks.id}" class="completeButton">Complete</button></td>
         <td><button data-id="${tasks.id}" class="deleteButton">Delete</button></td>
