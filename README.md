@@ -11,6 +11,10 @@ The goal of this project was to create an application where the user could enter
 ## Project Image
 <img src="server/public/weekendapp.png">
 
+## Project URL
+The finished project was deployed on Heroku and can be found here:
+https://awesome-weekend-to-do-list.herokuapp.com/
+
 ## Prequisites
 This project makes use of Node.js, which can be found and downloaded from the link below:
 Node.js: https://nodejs.org/en/
