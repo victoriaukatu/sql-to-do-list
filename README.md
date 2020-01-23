@@ -6,7 +6,7 @@ Weekend To-Do List App
 
 Duration: 3 days
 
-The goal of this project was to create an application where the user could enter different tasks that they need to do. They can select true or false to indicate whether the task is done or still needs to be completed. When the 'Add Task' button is clicked, the task is stored in the database. When the 'Complete' button is clicked, the row changes green which marks the task as completed. The 'Delete' button allows the user to remove a task. This project accomplished the goal of creating an application which made use of the full stack.
+This project was created in Week 9 of the Prime program. The goal of this project was to create an application where the user could enter different tasks that they need to do. They can select true or false to indicate whether the task is done or still needs to be completed. When the 'Add Task' button is clicked, the task is stored in the database. When the 'Complete' button is clicked, the row changes green which marks the task as completed. The 'Delete' button allows the user to remove a task. This project accomplished the goal of creating an application which made use of the full stack.
 
 ## Project Image
 <img src="server/public/weekendapp.png">
